@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		D6B2851222FED5A20062F3AF /* TransitionalLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B2851022FED5A20062F3AF /* TransitionalLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D6B2851C22FED5C90062F3AF /* CheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851822FED5C90062F3AF /* CheckMark.swift */; };
+		D6B2851D22FED5C90062F3AF /* TransitionalLoaderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851922FED5C90062F3AF /* TransitionalLoaderContainer.swift */; };
+		D6B2851E22FED5C90062F3AF /* UIView+TransitionalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851A22FED5C90062F3AF /* UIView+TransitionalLoader.swift */; };
+		D6B2851F22FED5C90062F3AF /* TransitionalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851B22FED5C90062F3AF /* TransitionalLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D6B2850D22FED5A20062F3AF /* TransitionalLoader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TransitionalLoader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6B2851022FED5A20062F3AF /* TransitionalLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionalLoader.h; sourceTree = "<group>"; };
 		D6B2851122FED5A20062F3AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6B2851822FED5C90062F3AF /* CheckMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckMark.swift; sourceTree = "<group>"; };
+		D6B2851922FED5C90062F3AF /* TransitionalLoaderContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionalLoaderContainer.swift; sourceTree = "<group>"; };
+		D6B2851A22FED5C90062F3AF /* UIView+TransitionalLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+TransitionalLoader.swift"; sourceTree = "<group>"; };
+		D6B2851B22FED5C90062F3AF /* TransitionalLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionalLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +54,10 @@
 		D6B2850F22FED5A20062F3AF /* TransitionalLoader */ = {
 			isa = PBXGroup;
 			children = (
+				D6B2851822FED5C90062F3AF /* CheckMark.swift */,
+				D6B2851B22FED5C90062F3AF /* TransitionalLoader.swift */,
+				D6B2851922FED5C90062F3AF /* TransitionalLoaderContainer.swift */,
+				D6B2851A22FED5C90062F3AF /* UIView+TransitionalLoader.swift */,
 				D6B2851022FED5A20062F3AF /* TransitionalLoader.h */,
 				D6B2851122FED5A20062F3AF /* Info.plist */,
 			);
@@ -95,6 +107,7 @@
 				TargetAttributes = {
 					D6B2850C22FED5A20062F3AF = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -130,6 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6B2851E22FED5C90062F3AF /* UIView+TransitionalLoader.swift in Sources */,
+				D6B2851D22FED5C90062F3AF /* TransitionalLoaderContainer.swift in Sources */,
+				D6B2851F22FED5C90062F3AF /* TransitionalLoader.swift in Sources */,
+				D6B2851C22FED5C90062F3AF /* CheckMark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +278,7 @@
 		D6B2851622FED5A20062F3AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -269,6 +287,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TransitionalLoader/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -277,6 +296,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ammaraltahhan.TransitionalLoader;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,6 +305,7 @@
 		D6B2851722FED5A20062F3AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -293,6 +314,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TransitionalLoader/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
