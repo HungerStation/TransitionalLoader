@@ -14,7 +14,7 @@ extension UIView {
     /// Aniamtes the called on view from its current size and position to a loader in the middle and starts animating directly.
     ///
     /// - Parameter onTapWhileLoading: Fall back action for when the user taps on the loader before explicitly calling `stopLoader(success:restoreView)`. `nil` ignores user action.
-    public func startLoader(onTapWhileLoading: ForceFinishState? = nil) {
+    public func startLoader(onTapWhileLoading: FinishState? = nil) {
         UIView.animate(withDuration: 0.1, animations: {
             self.subviews.forEach({$0.alpha = 0})
         })
@@ -31,20 +31,11 @@ extension UIView {
     /// Stops the loader started by `startLoader(onTapWhileLoading:)` or by `startLoader()` if any.
     ///
     /// - Parameters:
-    ///   - success: Determines the state to finish the animation with. nil shows `✓` in its original color. true shows a `✓` in green. false shows a `x` in red.
-    ///   - restoreView: Causes the view to be restored to its initial position and size, opposed to keeping the loader shown and it to be hidden.
-    public func stopLoader(success: Bool? = nil, restoreView: Bool, animationCompletion: (()->Void)? = nil) {
+    ///   - finishState: Determines the state to finish the animation with.
+    public func stopLoader(finishState: FinishState, animationCompletion: (()->Void)? = nil) {
         guard let container = superview?.viewWithTag(425612) as? TransitionalLoaderContainer else { return }
-        container.loader.stopAnimation(success: success) {
-            guard restoreView else {
-                animationCompletion?()
-                return }
-            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
-                container.restoreInitial() {
-                    animationCompletion?()
-                }
-            })
-        }
+        
+        container.stopAnimation(finishState: finishState, animationCompletion: animationCompletion)
     }
     
     

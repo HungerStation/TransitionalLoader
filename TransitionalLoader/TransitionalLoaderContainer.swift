@@ -6,24 +6,39 @@
 //  Copyright © 2019 Ammar Altahhan. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
-public enum ForceFinishState {
+public enum FinishState {
+    /// Restores the initial view without any feedback
+    case cancel
+    /// Shows a success feedback with check mark, optionally in green and restoring the initial view
     case success(restoreView: Bool, inGreen: Bool)
+    /// Shows an error feedback with a red cross, optionally restoring the initial view
     case error(restoreView: Bool)
+    
+    var isRestored: Bool {
+        switch self {
+        case .cancel:
+            return true
+        case .success(let restoreView, _):
+            return restoreView
+        case .error(let restoreView):
+            return restoreView
+        }
+    }
 }
 
 
 class TransitionalLoaderContainer: UIView {
     
     private var initialView: UIView
-    private var onTapWhileLoading: ForceFinishState?
-    private(set) lazy var loader = TransitionalLoader(color: initialView.backgroundColor)
+    private var onTapWhileLoading: FinishState?
+    private(set) var loader: TransitionalLoader!
     
     private let animator = UIViewPropertyAnimator(duration: 0.3, curve: .linear)
     
-    init(initialView: UIView, onTapWhileLoading: ForceFinishState? = nil) {
+    init(initialView: UIView, onTapWhileLoading: FinishState? = nil) {
         self.initialView = initialView
         self.onTapWhileLoading = onTapWhileLoading
         super.init(frame: initialView.frame)
@@ -33,23 +48,44 @@ class TransitionalLoaderContainer: UIView {
         layer.borderWidth = initialView.layer.borderWidth
         autoresizesSubviews = false
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap)))
+        initializeLoader()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
     
+    deinit {
+        print("Deinit Container")
+    }
+    
+    override func willMove(toSuperview newSuperview: UIView?) {
+        if newSuperview == nil {
+            initialView = UIView()
+        }
+    }
+    
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
-        loader.frame = self.rectFromCenter(withSize: CGSize(width: 40, height: 40))
         loadSubviews()
+    }
+    
+    private func initializeLoader() {
+        var loadingColor = initialView.backgroundColor
+        if let borderColor = initialView.layer.borderColor {
+            loadingColor = UIColor(cgColor: borderColor)
+        }
+        loader = TransitionalLoader(color: loadingColor)
+        
+        // Frame's dimension should be equal to the smallest dimension of `initialView`, but not greater than 40 or smaller than 24
+        let dimension = max(24, min(40, min(initialView.frame.width, initialView.frame.height)))
+        loader.frame = self.rectFromCenter(withSize: CGSize(width: dimension, height: dimension))
     }
     
     private func loadSubviews() {
         guard loader.superview == nil else { return }
         loader.didDetermineBounds = { [weak self] _ in
-            print("didDetermineBounds")
             self?.startAnimating()
         }
         addLoader()
@@ -65,7 +101,6 @@ class TransitionalLoaderContainer: UIView {
     private func startAnimating(reversed: Bool = false, completion: (()->Void)? = nil) {
         
         let diffX = !reversed ? initialView.bounds.width-loader.bounds.width : loader.bounds.width-initialView.bounds.width
-        print("diffX \(diffX)")
         let diffY = !reversed ? initialView.bounds.height-loader.bounds.height : loader.bounds.height-initialView.bounds.height
         let size = !reversed ? CGSize(width: loader.bounds.width, height: loader.bounds.height) :  CGSize(width: initialView.bounds.width, height: initialView.bounds.height)
         let originPoint = CGPoint(x: self.frame.origin.x + (diffX/2), y: self.frame.origin.y + (diffY/2))
@@ -83,6 +118,7 @@ class TransitionalLoaderContainer: UIView {
             })
             !reversed ? self?.loader.startAnimation() : self?.loader.stopAnimation()
             self?.animator.stopAnimation(true)
+            self?.layer.borderWidth = 0
             completion?()
         }
         
@@ -105,8 +141,45 @@ class TransitionalLoaderContainer: UIView {
                 self?.alpha = 0
             }) { bool in
                 animationCompletion?()
+                self?.removeFromSuperview()
             }
         }
+    }
+    
+    func stopAnimation(finishState: FinishState, animationCompletion: (()->Void)? = nil) {
+        
+        switch finishState {
+        case .cancel:
+            loader.stopAnimation()
+            restoreInitial()
+        case .success(let restoreView, let inGreen):
+            loader.stopAnimation(success: inGreen ? true : nil) { [weak self] in
+                if restoreView {
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                        self?.restoreInitial() {
+                            animationCompletion?()
+                            self?.removeFromSuperview()
+                        }
+                    })
+                } else {
+                    animationCompletion?()
+                }
+            }
+        case .error(let restoreView):
+            loader.stopAnimation(success: false) { [weak self] in
+                if restoreView {
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                        self?.restoreInitial() {
+                            animationCompletion?()
+                            self?.removeFromSuperview()
+                        }
+                    })
+                } else {
+                    animationCompletion?()
+                }
+            }
+        }
+        
     }
     
     @objc private func didTap() {
@@ -129,7 +202,10 @@ class TransitionalLoaderContainer: UIView {
                     })
                 }
             }
+        case .cancel:
+            restoreInitial()
         }
+        
     }
     
 }

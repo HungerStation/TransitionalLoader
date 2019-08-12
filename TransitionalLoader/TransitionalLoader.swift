@@ -36,6 +36,10 @@ public class TransitionalLoader: UIView {
         fatalError()
     }
     
+    deinit {
+        print("Deinit Loader")
+    }
+    
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
         
@@ -76,7 +80,7 @@ public class TransitionalLoader: UIView {
     /// - Parameters:
     ///   - success: nil shows `✓` in its original color. true shows a `✓` in green. false shows a `x` in red.
     ///   - completion: Block that returns and takes nothing. Called after animation's stopped.
-    public func stopAnimation(success: Bool? = nil, completion: (()->Void)? = nil) {
+    func stopAnimation(success: Bool? = nil, completion: (()->Void)? = nil) {
         
         let spacing = self.dashedLayer.lineDashPattern![1].intValue
         
@@ -112,6 +116,7 @@ public class TransitionalLoader: UIView {
                     self.showCheckMark(success: success)
                 } else if i == spacing {
                     self.dashedLayer.removeAnimation(forKey: self.lineDashPhase)
+                    self.dashedLayer.removeAnimation(forKey: "strokeColor")
                     completion?()
                 }
             }
