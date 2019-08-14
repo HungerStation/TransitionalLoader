@@ -73,7 +73,7 @@ class TransitionalLoaderContainer: UIView {
     
     private func initializeLoader() {
         var loadingColor = initialView.backgroundColor
-        if let borderColor = initialView.layer.borderColor {
+        if initialView.layer.borderWidth > 0, let borderColor = initialView.layer.borderColor {
             loadingColor = UIColor(cgColor: borderColor)
         }
         loader = TransitionalLoader(color: loadingColor)
