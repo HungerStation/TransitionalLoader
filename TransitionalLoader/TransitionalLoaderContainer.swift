@@ -36,9 +36,9 @@ class TransitionalLoaderContainer: UIView {
     private var onTapWhileLoading: FinishState?
     private(set) var loader: TransitionalLoader!
     
-    private let animator = UIViewPropertyAnimator(duration: 0.3, curve: .linear)
+    private let animator = UIViewPropertyAnimator(duration: 0.22, curve: .linear)
     
-    init(initialView: UIView, onTapWhileLoading: FinishState? = nil) {
+    init(initialView: UIView, color: UIColor?, onTapWhileLoading: FinishState? = nil) {
         self.initialView = initialView
         self.onTapWhileLoading = onTapWhileLoading
         super.init(frame: initialView.frame)
@@ -48,7 +48,7 @@ class TransitionalLoaderContainer: UIView {
         layer.borderWidth = initialView.layer.borderWidth
         autoresizesSubviews = false
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap)))
-        initializeLoader()
+        initializeLoader(color: color)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,15 +71,17 @@ class TransitionalLoaderContainer: UIView {
         loadSubviews()
     }
     
-    private func initializeLoader() {
-        var loadingColor = initialView.backgroundColor
-        if initialView.layer.borderWidth > 0, let borderColor = initialView.layer.borderColor {
-            loadingColor = UIColor(cgColor: borderColor)
-        }
+    private func initializeLoader(color: UIColor?) {
+        let loadingColor = color ??
+                           UIColor(cgColor: initialView.layer.borderColor) ??
+                           initialView.backgroundColor ??
+                           initialView.tintColor ??
+                           UIColor.green
+        
         loader = TransitionalLoader(color: loadingColor)
         
-        // Frame's dimension should be equal to the smallest dimension of `initialView`, but not greater than 40 or smaller than 24
-        let dimension = max(24, min(40, min(initialView.frame.width, initialView.frame.height)))
+        // Frame's dimension should be equal to the smallest dimension of `initialView`, but not greater than 40 or smaller than 15
+        let dimension = max(15, min(40, min(initialView.frame.width, initialView.frame.height)))
         loader.frame = self.rectFromCenter(withSize: CGSize(width: dimension, height: dimension))
     }
     
