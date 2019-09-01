@@ -149,6 +149,10 @@ class TransitionalLoaderContainer: UIView {
     }
     
     func stopAnimation(finishState: FinishState, animationCompletion: (()->Void)? = nil) {
+        guard loader.isLoading else {
+            animationCompletion?()
+            return
+        }
         
         switch finishState {
         case .cancel:
