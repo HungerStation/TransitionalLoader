@@ -44,7 +44,11 @@ extension UIView {
     /// - Parameters:
     ///   - finishState: Determines the state to finish the animation with.
     public func stopLoader(finishState: FinishState, animationCompletion: (()->Void)? = nil) {
-        guard let container = superview?.viewWithTag(425612) as? TransitionalLoaderContainer else { return }
+        guard let container = superview?.viewWithTag(425612) as? TransitionalLoaderContainer else {
+            animationCompletion?()
+            return
+            
+        }
         
         container.stopAnimation(finishState: finishState, animationCompletion: animationCompletion)
     }

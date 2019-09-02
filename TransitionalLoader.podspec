@@ -7,6 +7,7 @@ s.ios.deployment_target = '10.0'
 s.name = "TransitionalLoader"
 s.summary = "A smooth loader that can be used on any UIView subclass"
 s.requires_arc = true
+s.description = "A smooth loader that can be used on any UIView subclass"
 
 # 2
 s.version = "0.0.1"
