@@ -6,7 +6,7 @@ s.ios.deployment_target = '10.0'
 s.name = "TransitionalLoader"
 s.summary = "A smooth loader that can be used on any UIView subclass"
 s.requires_arc = true
-s.description = "A smooth loader that can be used on any UIView subclass"
+s.description = "TransitionalLoader extends UIView, to allow you to transform any UIView subclass into an animated loader easily"
 
 s.version = "0.0.2"
 
@@ -22,8 +22,6 @@ s.source = { :git => "https://github.com/HungerStation/TransitionalLoader.git",
 s.framework = "UIKit"
 
 s.source_files = "TransitionalLoader/**/*.{swift}"
-
-s.resources = "TransitionalLoader/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 
 s.swift_version = "4.2"
 
