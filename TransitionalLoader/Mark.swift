@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CheckMark: UIView {
+class Mark: UIView {
     
     private let path = UIBezierPath()
     private let pathLayer = CAShapeLayer()
@@ -44,12 +44,12 @@ class CheckMark: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        showMark()
+        drawMark()
     }
     
     
     /// Start drawing either `✓` or `x` depending on the value of `success`
-    private func showMark() {
+    private func drawMark() {
         guard pathLayer.path == nil else { return }
         
         pathLayer.frame = bounds
@@ -60,9 +60,9 @@ class CheckMark: UIView {
         pathLayer.lineJoin = .round
         
         if success != false {
-            showTick()
+            drawCheck()
         } else {
-            showX()
+            drawX()
         }
         
         animatePath()
@@ -70,13 +70,14 @@ class CheckMark: UIView {
     
     
     /// Draws a `✓`, either in the same or origin `color` or in green depending on the value of success
-    private func showTick() {
+    private func drawCheck() {
         let rect = bounds
         
-        let fifthX = rect.maxX/5
+        let xRatio = rect.maxX/2.8
+        let yRatio = rect.maxY/6.5
         path.move(to: CGPoint(x: 0, y: rect.midY))
-        path.addLine(to: CGPoint(x: 2*fifthX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+        path.addLine(to: CGPoint(x: xRatio, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY+yRatio))
         
         pathLayer.path = path.cgPath
         pathLayer.strokeColor = color.cgColor
@@ -88,7 +89,7 @@ class CheckMark: UIView {
     
     
     /// Draws a red `✓` regardless of any condition
-    private func showX() {
+    private func drawX() {
         let rect = bounds
         
         path.move(to: CGPoint(x: 0, y: 0))

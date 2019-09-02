@@ -18,7 +18,7 @@ public class TransitionalLoader: UIView {
     
     private let lineDashPhase = "lineDashPhase"
     private var dashedLayer = CAShapeLayer()
-    private var checkMark: CheckMark!
+    private var checkMark: Mark!
     
     private var color: UIColor = UIColor.green
     
@@ -124,7 +124,7 @@ public class TransitionalLoader: UIView {
     }
     
     private func showCheckMark(success: Bool?) {
-        checkMark = CheckMark(success: success, color: color, lineWidth: lineWidth)
+        checkMark = Mark(success: success, color: color, lineWidth: lineWidth)
         checkMark.translatesAutoresizingMaskIntoConstraints = false
         addSubview(checkMark)
         NSLayoutConstraint.activate([

@@ -1,0 +1,16 @@
+PODS:
+  - TransitionalLoader (0.0.1)
+
+DEPENDENCIES:
+  - TransitionalLoader (from `../`)
+
+EXTERNAL SOURCES:
+  TransitionalLoader:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  TransitionalLoader: 25fa91c516d891e2a1ab9947f24dbd817c20d26d
+
+PODFILE CHECKSUM: 391fc3d102caa4ea629570843d39670ca64355d8
+
+COCOAPODS: 1.7.5

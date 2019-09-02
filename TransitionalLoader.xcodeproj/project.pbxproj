@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		D69F11AC2309E3EA00C82047 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69F11AB2309E3EA00C82047 /* UIColor.swift */; };
 		D6B2851222FED5A20062F3AF /* TransitionalLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B2851022FED5A20062F3AF /* TransitionalLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D6B2851C22FED5C90062F3AF /* CheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851822FED5C90062F3AF /* CheckMark.swift */; };
+		D6B2851C22FED5C90062F3AF /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851822FED5C90062F3AF /* Mark.swift */; };
 		D6B2851D22FED5C90062F3AF /* TransitionalLoaderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851922FED5C90062F3AF /* TransitionalLoaderContainer.swift */; };
 		D6B2851E22FED5C90062F3AF /* UIView+TransitionalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851A22FED5C90062F3AF /* UIView+TransitionalLoader.swift */; };
 		D6B2851F22FED5C90062F3AF /* TransitionalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2851B22FED5C90062F3AF /* TransitionalLoader.swift */; };
@@ -20,7 +20,7 @@
 		D6B2850D22FED5A20062F3AF /* TransitionalLoader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TransitionalLoader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6B2851022FED5A20062F3AF /* TransitionalLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionalLoader.h; sourceTree = "<group>"; };
 		D6B2851122FED5A20062F3AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D6B2851822FED5C90062F3AF /* CheckMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckMark.swift; sourceTree = "<group>"; };
+		D6B2851822FED5C90062F3AF /* Mark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
 		D6B2851922FED5C90062F3AF /* TransitionalLoaderContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionalLoaderContainer.swift; sourceTree = "<group>"; };
 		D6B2851A22FED5C90062F3AF /* UIView+TransitionalLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+TransitionalLoader.swift"; sourceTree = "<group>"; };
 		D6B2851B22FED5C90062F3AF /* TransitionalLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionalLoader.swift; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		D6B2850F22FED5A20062F3AF /* TransitionalLoader */ = {
 			isa = PBXGroup;
 			children = (
-				D6B2851822FED5C90062F3AF /* CheckMark.swift */,
+				D6B2851822FED5C90062F3AF /* Mark.swift */,
 				D6B2851B22FED5C90062F3AF /* TransitionalLoader.swift */,
 				D6B2851922FED5C90062F3AF /* TransitionalLoaderContainer.swift */,
 				D6B2851A22FED5C90062F3AF /* UIView+TransitionalLoader.swift */,
@@ -149,7 +149,7 @@
 				D6B2851E22FED5C90062F3AF /* UIView+TransitionalLoader.swift in Sources */,
 				D6B2851D22FED5C90062F3AF /* TransitionalLoaderContainer.swift in Sources */,
 				D6B2851F22FED5C90062F3AF /* TransitionalLoader.swift in Sources */,
-				D6B2851C22FED5C90062F3AF /* CheckMark.swift in Sources */,
+				D6B2851C22FED5C90062F3AF /* Mark.swift in Sources */,
 				D69F11AC2309E3EA00C82047 /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

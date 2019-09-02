@@ -1,0 +1,6 @@
+framework module TransitionalLoader {
+  umbrella header "TransitionalLoader-umbrella.h"
+
+  export *
+  module * { export * }
+}
