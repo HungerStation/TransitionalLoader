@@ -68,7 +68,7 @@ public func stopLoader(finishState: FinishState, animationCompletion: (()->Void)
 <br>
 
 
-* Finally, you can apply any `CGAffineTransfor` to the laoder using: 
+* Finally, you can apply any `CGAffineTransform` to the laoder using: 
 ```swift
 public func transformLoader(_ transformation: CGAffineTransform)
 ```
