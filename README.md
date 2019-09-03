@@ -1,5 +1,5 @@
 
-<img align="center" src="Resources/covergif.gif" width="150" height="150" /></a> 
+<p align="center"><img src="Resources/covergif.gif" width="150" height="150" /></a></p> 
 <br>
 
 # TransitionalLoader
