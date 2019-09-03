@@ -1,5 +1,5 @@
 
-<img align="left" src="Resources/covergif.gif" width="150" height="150" /></a> 
+<img src="Resources/covergif.gif" width="150" height="150" /></a> 
 <br>
 
 # TransitionalLoader
@@ -50,6 +50,7 @@ and call:
 view.startLoader()
 ```
 and the library will take care of the rest.
+<br>
 <br>
 
 * You can also give the loader a color and specify how you'd like the loader to stop if the user taps on it:
