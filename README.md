@@ -50,15 +50,16 @@ and call:
 view.startLoader()
 ```
 and the library will take care of the rest.
-
+<br>
 
 * You can also give the loader a color and specify how you'd like the loader to stop if the user taps on it:
 ```swift
 public func startLoader(color: UIColor?, onTapWhileLoading: FinishState?)
 ```
 By default, if no color is provided it'll use the borderColor, backgroundColor, tintColor, or green depending on the value with the same mentioned order. <br>
-Also, by default the loader isn't tappable unless a `FinishState` is provided. <br>
-
+Also, by default the loader isn't tappable unless a `FinishState` is provided. 
+<br>
+<br>
 
 * To stop the loader just call:
 ```swift
