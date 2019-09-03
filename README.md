@@ -49,7 +49,7 @@ and call:
 ```swift
 view.startLoader()
 ```
-and the library will take care of the rest. <br><br>
+and the library will take care of the rest.
 
 
 * You can also give the loader a color and specify how you'd like the loader to stop if the user taps on it:
@@ -60,10 +60,17 @@ By default, if no color is provided it'll use the borderColor, backgroundColor, 
 Also, by default the loader isn't tappable unless a `FinishState` is provided. <br>
 
 
-* Calling `stopLoader(finishState:animationCompletion:)` will cause the loader to stop animating. <br>
+* To stop the loader just call:
+```swift
+public func stopLoader(finishState: FinishState, animationCompletion: (()->Void)?)
+```
+<br>
 
 
-* Finally, you can use `transformLoader(_:)` to apply any `CGAffineTransform` to the loader.
+* Finally, you can apply any `CGAffineTransfor` to the laoder using: 
+```swift
+public func transformLoader(_ transformation: CGAffineTransform)
+```
 
 License <a name="license"></a>
 --------
